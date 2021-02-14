@@ -50,7 +50,7 @@ while True:
         #возможно эта штука по шустрее будет (видео не будет подвисать), если добавить "спираль" или что-то похожее, чтобы искать рядом. Мб какойто "звёздочкой"
     if cv2.waitKey(10) == 27: # Клавиша Esc? А как по крестику выходить? Всё ещё актуально
         break
-    if cv2.getWindowProperty('window-name', 0) >= 0:
+    if not cv2.getWindowProperty('Cam', 0) >= 0:
         break
 
 cap.release()
