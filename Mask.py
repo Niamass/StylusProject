@@ -156,9 +156,9 @@ count_col = 0
 
 ret, img = cap.read()
 Marker = np.zeros_like(img)
-Point = np.zeros_like(img)
 
-mask = np.zeros_like(img)
+
+mask = np.full_like(img, 255)
 mask = cv2.flip(mask, 1)
 
 kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (10, 10))
@@ -220,12 +220,12 @@ while True:
             x = int(dM10 / dArea)
             y = int(dM01 / dArea)
             mask = cv2.circle(mask, (x, y), 5, (255, 255, 255), -1)
-            Point = cv2.add(Point, mask)
+            
 
         fgmask = fgbg.apply(Marker)
         #fgmask = cv2.morphologyEx(fgmask, cv2.MORPH_OPEN, kernel)
 
-        cv2.imshow("WM", np.hstack([img, Marker, Point]))
+        cv2.imshow("WM", np.hstack([img, Marker, mask]))
 
     if cv2.waitKey(10) == 27:  # Клавиша Esc
         break
